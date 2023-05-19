@@ -1,0 +1,88 @@
+{
+    "title": "RODE Partners",
+    "center": { "lat": -33.955, "lng": 151.130 },
+    "minHeight": "500px",
+    "minWidth": "500px",
+    "markers": [
+        { 
+            "label": "The Royal Hospital for Women", 
+            "link": "https://www.seslhd.health.nsw.gov.au/royal-hospital-for-women",
+            "icon": "pin", 
+            "position": { 
+                "lat": -33.91897202528397, 
+                "lng": 151.23790247127707
+            },
+            "weight": 30
+        },
+        { 
+            "label": "Sydney Eye Hospital", 
+            "link": "https://www.seslhd.health.nsw.gov.au/sydney-eye-hospital",
+            "icon": "pin", 
+            "position": { 
+                "lat": -33.867956579061996,
+                "lng": 151.2122737541025
+            },
+            "weight": 30
+        },
+        {
+            "label": "The Prince of Wales Hospital", 
+            "link": "https://www.seslhd.health.nsw.gov.au/prince-of-wales-hospital",
+            "icon": "pin", 
+            "position": { 
+                "lat": -33.91889189749354, 
+                "lng": 151.2391255585415
+            }, 
+            "weight": 30 
+        },
+        { 
+            "label": "The Sutherland Hospital", 
+            "link": "https://www.seslhd.health.nsw.gov.au/sutherland-hospital",
+            "icon": "pin", 
+            "position": { 
+                "lat": -34.03634408321856,  
+                "lng": 151.11477202897004
+            }, 
+            "weight": 30 
+        },
+        {
+            "label": "Neuroscience Research Australia", 
+            "link": "https://www.neura.edu.au/",
+            "icon": "pin", 
+            "position": { 
+                "lat": -33.92067249729, 
+                "lng": 151.23767716572837
+            }, 
+            "weight": 30
+        },
+        { 
+            "label": "Black Dog Institute", 
+            "link": "https://www.blackdoginstitute.org.au/",
+            "icon": "pin", 
+            "position": { 
+                "lat": -33.919663941569866, 
+                "lng": 151.2376760712961
+            }, 
+            "weight": 30 
+        },
+        { 
+            "label": "St George Hospital", 
+            "link": "https://www.seslhd.health.nsw.gov.au/st-george-hospital",
+            "icon": "pin", 
+            "position": { 
+                "lat": -33.96663932073634, 
+                "lng": 151.13447738479013
+            }, 
+            "weight": 30 
+        },
+        { 
+            "label": "The University of NSW", 
+            "link": "https://www.unsw.edu.au/",
+            "icon": "pin", 
+            "position": { 
+                "lat": -33.917168915384394,
+                "lng": 151.23124604061067
+            }, 
+            "weight": 30 
+        }
+    ]
+}
