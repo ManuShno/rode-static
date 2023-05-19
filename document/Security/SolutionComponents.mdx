@@ -1,0 +1,35 @@
+# Solution Components
+The following information is related to the components of the RODE platform and the server infrastructure that hosts the platform. 
+
+Data is categorised according to the following metric (the NSW eHealth category of data risk):
+| Category | Code | Description |
+| :--- | :---: | :--- |
+| **Sensitive** | **S** | |
+
+## Application Server Components
+The application server components are the RODE application (microservices) that form the RODE platform.
+
+| Application Name | Function | Data Incoming | Data Outgoing | Data Stored | Application Stack | Environment | Interfaces |
+| :--- | :--- | :--- | :--- | :--- | :---: | :---: | :--- |
+| RODE User Interface || Web form submitted data [S] ||||||
+
+## Platform Components - AWS
+The AWS platform components are the AWS services in use delivering the development, storage, and hosting of the RODE platform.
+
+| Application Name | Dev | Prod | IP Address | Function | Application - Version |
+| :--- | :---: | :---: | :--- | :--- | :--- |
+| AWS EC2 Dev Autoscaling Group - AZ1 | :heavy_check_mark: || 10.137.84.0/26 || Amazon Linux based AWS CloudFormation template |
+| AWS EC2 Dev Autoscaling Group - AZ2 | :heavy_check_mark: || 10.137.82.64/26 || Amazon Linux based AWS CloudFormation template |
+| AWS EC2 Dev Autoscaling Group - AZ3 | :heavy_check_mark: || 10.137.84.64/26 || Amazon Linux based AWS CloudFormation template |
+| AWS EC2 Prod Autoscaling Group - AZ1 || :heavy_check_mark: ||| Amazon Linux based AWS CloudFormation template |
+| AWS EC2 Prod Autoscaling Group - AZ2 || :heavy_check_mark: ||| Amazon Linux based AWS CloudFormation template |
+| AWS EC2 Prod Autoscaling Group - AZ3 || :heavy_check_mark: ||| Amazon Linux based AWS CloudFormation template |
+| AWS Cloud Formation | :heavy_check_mark: |||||
+| AWS Code Commit | :heavy_check_mark: |||||
+| AWS Code Build | :heavy_check_mark: |||||
+| AWS Elastic Container Store | :heavy_check_mark: | :heavy_check_mark: ||||
+| AWS Elastic Kubernetes Service | :heavy_check_mark: | :heavy_check_mark: ||||
+| AWS Web Application Firewall | :heavy_check_mark: | :heavy_check_mark: ||||
+| AWS Simple Storage Service | :heavy_check_mark: | :heavy_check_mark: ||||
+| AWS Database Elastic File Storage | :heavy_check_mark: | :heavy_check_mark: ||||
+| AWS Source Code Elastic File Storage | :heavy_check_mark: |||||

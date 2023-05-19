@@ -1,0 +1,22 @@
+# High Availability
+Kubernetes is an open source tool that simplfies the running of containerised applications. The microservice architecture of the RODE platform relies on a robust orchestration tool like kubernetes. RODE employs kubernetes in the following ways:
+
+| Function | Purpose | Method |
+| :--- | :--- | :--- |
+| Control plane | Controls the processes of the kubernetes tool | AWS EKS control plane across availability zones |
+| Worker node management | Manages the compute capability of the RODE platform | AWS EC2 instances connected and configured via AWS Cloud Formation with resource monitoring |
+| Container orchestration | Manages the microservices of the RODE platform | AWS EKS engine and kubernetes horizontal pod autoscalers |
+| Cluster load balancing | Assigns traffic to the available services within the compute cluster | Kubernetes ingress controller (NGINX) |
+| Health monitoring of containers | Performs routine checks on running containers and recreate containers if health check fails | In-built kubernetes pod health checks |
+
+## Backups 
+The majority of the RODE microservices operate in a stateless manner. These stateless applications do not store data and do not require backup operations to be performed.
+
+The Cache and Data Servers within the platform store data as mounted volumes within the containers which allows for the data to persist across container restarts and failures.
+
+In the unlikely event the Cache volume fails the microservices are designed to reinitiate the require cache state of the platform.
+
+Database dumps are to be performed by the kubernetes configuration of ChronJobs. These are time scheduled jobs which can perform operations within the running containers. The database backup files are stored in a mounted volume isolated from the database files. These dump files are stored for a period of 1 week prior to deletion.
+
+## Disaster Recovery
+The disaster recovery of the RODE platform relies on the AWS shared responsibility model. This includes the spreading of the compute across multiple AWS Availabilty Zones. AWS Availability Zones are geographically separated data centres that operate the server hardware.

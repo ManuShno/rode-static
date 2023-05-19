@@ -1,0 +1,9 @@
+# Key Management
+The RODE platform key management is largely maintained within the kubernetes cluster configuration using kubernetes secrets.
+
+## Kubernetes Secrets
+The RODE platform uses [kubernetes secrets](https://kubernetes.io/docs/concepts/configuration/secret/) to manage the keys for the various elements of the RODE platform.
+
+The use of the Amazon Web Services (AWS) Elastic Kubernetes Service (EKS) means that the kubernetes secrets which are typically stored in the etcd storage for cluster will be stored by default in the [AWS Key Management Service (KMS)](https://aws.amazon.com/kms/).
+
+The secrets are mounted according to need as envrionment variables within the relevant containers within the RODE platform.

@@ -1,0 +1,11 @@
+# Encryption
+
+## In Transit
+All external traffic in the RODE platform uses TLS1.3 traffic encryption and enforces all external traffic to use the https transport protocol.
+
+The traffic internal to the platform cluster is limited to traffic originating from within the RODE Amazon Web Services (AWS) Virutal Private Cload (VPC). No TLS traffic is forwarded from the Elastic Load Balancer (ELB) (TLS termination point) to backend services.
+
+## At Rest
+The RODE platform utilises [MySQL Data at Rest Encryption](https://dev.mysql.com/doc/refman/8.0/en/innodb-data-encryption.html).
+
+MySQL InnoDB uses a two tier encryption key architecture, consisting of a master encryption key and tablespace keys. When a tablespace is encrypted, a tablespace key is encrypted and stored in the tablespace header. When an application or authenticated user wants to access encrypted tablespace data, InnoDB uses a master encryption key to decrypt the tablespace key. The decrypted version of a tablespace key never changes, but the master encryption key can be changed as required. This action is referred to as master key rotation. [Taken from the mysql documentation]

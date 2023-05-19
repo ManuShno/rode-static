@@ -1,0 +1,20 @@
+# Role Based Access Control
+The roles associated with the RODE platform are detailed in the following table.
+
+The RODE application manages access permissions at the levels of:
+* Platform - the server infrastructure
+* Application - the end user application
+* Sub-application - the end user sub-application (domain specific)
+* API - exposed researcher project APIs
+* Extract - exposed registry APIs
+
+The platform access is controlled via NSW Health Administrator accounts over VPN, and AWS IAM roles.
+
+| Application | Role | Description | Create | Read | Update | Delete | Context / Area |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| Platform | Developer / Maintainer | Power user with full privileges to the user interface and infrastructure | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Entire platform |
+| Application | Administrator | Power user with full privileges via the user interface | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Entire application |
+| Sub-application | Elevated End User | End user with sub-application privileges | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | Domain restricted sub-application |
+| Sub-application | End User | Standard end user | :heavy_check_mark: | | | | Domain restricted sub-application |
+| API | Researcher | Researcher that has a data request scoped to an approved project | :heavy_check_mark: | | | | Project specific API |
+| Extract | Approved Application | System access for a specified and approved external application | :heavy_check_mark: | | | | Specific data end-point |

@@ -1,0 +1,11 @@
+# Endpoint Configuration
+The RODE endpoiunts are managed using Amazon Web Services (AWS) native tools. 
+
+AWS uses a [shared responsibility model](https://aws.amazon.com/compliance/shared-responsibility-model/) in which AWS accepts the onus of managing and prtecting the native services provided within their platform.
+
+## Hardening
+The RODE microservice architecture is only accessible for end users via domain name routing via the AWS Elastic Load Balancer (ELB) which falls under the AWS shared responsibility model.
+
+The RODE system and development environment is accessible only to preset NSW Health users in posession of an Admin account. The system can only be accessed via Remote Desktop Protocol (RDP) over the eHealth Virtual Private Network (VPN) via AWS Direct Connect from the eHealth data centres to the AWS environment.
+
+This configuration is similar to other software hosted within eHealth Clinical Applications space.

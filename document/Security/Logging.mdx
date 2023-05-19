@@ -1,0 +1,25 @@
+# Logging
+## Clock Synchronisation
+The RODE platform uses the UTC standard for system time and monitoring. 
+
+Data values are stored in UTC format with reference to the timezone as a string representation.
+
+## Client Logs
+Each request to each microservice is appended to a log file mounted in a volume within the running container of the microservice. 
+
+The log format follows the following format:
+> utc datetime of request|request method:request uri|resp status|ip address|user uuid4
+
+This information is enough to reproduce the request for auditing and data request reproducibility.
+
+A separate log file will be created to monitor error logs for the daily period. The content of these logs will also include the response body of the request as a final pipe separated filed in the log format. The resulting format for the error log will then be:
+> utc datetime of request|request method:request uri|resp status|ip address|user uuid4|error response body
+
+## Logfile Settings
+### Protection
+The RODE logfiles are stored within [Amazon Web Services (AWS) Elastic File System (EFS)](https://aws.amazon.com/efs/) locations mounted as kubernetes volumes in the running microservice containers. There is one log file created per day and all operations are controlled via an append only process. 
+
+Reading from the logs requires accessing the logs from within the query microservice which opens the logs files as read only when parsing the log files for the requested period.
+
+### Retention
+The log files are currently confgured to be stored indefintely within the AWS EFS.
