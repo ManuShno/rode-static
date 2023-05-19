@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Overview",
+        "order": 1
+    },
+    {
+        "name": "Project Tracking",
+        "order": 10
+    },
+    {
+        "name": "Financial Tracking",
+        "order": 11
+    }
+]
