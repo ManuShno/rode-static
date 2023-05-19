@@ -1,0 +1,70 @@
+# Login
+
+**This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
+
+## Purpose
+
+The RODE load service controls the transmission of data to the relevant data service sidecars for database interactions.
+
+Every request is validated before processing with only the validated resources being processed.
+
+## Design
+
+The entity service operates in the same namespace as the RODE services. The service is a long running asgi server that accepts RESTful operations from the client and the other micro services. The service will then perform all the relevant data fetching requests from the database sidecars and join the data for delivery as a single JSON object.
+
+![Infrastructure](https://rode.forske.org/diagrams/login/infrastructure.drawio.svg)
+
+## Prerequisites
+
+This microservice is dependent on the following packages.
+
+| Package     |                     Documentation                      | Purpose                                                                                                                 |
+| :---------- | :----------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------- |
+| **cython**  |              [link](https://cython.org/)               | The c compiler for converting python code to C. This is to enable a processing speed boost in the falcon configuration. |
+| **uvicorn** |            [link](https://www.uvicorn.org/)            | The asynchronous ASGI web server implementation for the hosting of the falcon application.                              |
+| **falcon**  |    [link](https://falcon.readthedocs.io/en/stable/)    | The asgi application framework that is employed by the microservice.                                                    |
+| **asyncio** | [link](https://docs.python.org/3/library/asyncio.html) | The concurrency manager for the asynchronous processing of tasks in the asgi application.                               |
+| **aiohttp** |      [link](https://docs.aiohttp.org/en/stable/)       | The http request client for handling asynchronous http requests.                                                        |
+| **uuid**    |  [link](https://docs.python.org/3/library/uuid.html)   | The uuid string generator for the assignment of identifiers to entities.                                                |
+| **pyyaml**  |        [link](https://pypi.org/project/PyYAML/)        | A YAML data format processor to enable the reading of YAML formatted data to native python data structures.             |
+| **redis**   |       [link](https://github.com/redis/redis-py)        | The platform cache interface that connects to the sentinel enabled redis cluster.                                       |
+| **passlib** |   [link](https://passlib.readthedocs.io/en/stable/)    | A password hashing library to provide secure hashing for data values.                                                   |
+| **pytz**    |         [link](https://pythonhosted.org/pytz/)         | A world timezone definition library for accurate cross platform timezone calculations.                                  |
+
+## Volumes
+
+The following volumes are designed for use within the microservice. The available tags are:
+
+- PROD - production environment only
+- DEV - development environment only
+- ALL - required in all environments
+
+| Volume     | Path    | Tags | Description                                                                                                    |
+| :--------- | :------ | :--: | :------------------------------------------------------------------------------------------------------------- |
+| **logs**   | /logs   | ALL  | Location of the logfiles for logging request / error / system traffic                                          |
+| **tmp**    | /tmp    | ALL  | Temporary file location - should be a shared location with cleanup services running for purging historic files |
+| **source** | /source | DEV  | The source code volume to include the source code in the running container                                     |
+
+## Additional Documentation
+
+Additional documentation for the technical implementation of the microservice please visit the Administration portal within the user interface. Authentication with the system will need to occur before this portal is available.
+
+## Methods
+
+The methods section details the http methods which are available for querying. These will then perform the background operations to perform data operations.
+
+### Routes
+
+The routes are the url routing rules for the method requests.
+
+| Route    |   Stage    | GET | POST | PUT | PATCH | DELETE | Purpose                                                                                                                                                                     |
+| :------- | :--------: | :-: | :--: | :-: | :---: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| /healthz |    All     |     |      |     |       |        | The health check route that will be queried by the kubernetes health checks.                                                                                                |
+| /base    |    All     |     |      |     |       |        | The route for testing the initialisation of the development environment.                                                                                                    |
+| /        | Production |     |      |     |       |        | The route by which http requests should be received for manipulating data within the production environment. This should only ever be accessed from within the K8s cluster. |
+
+### Post
+
+The post method handler is responsible for the authentication of users in the RODE user interface. This will return a user specific JSON Web Token and the UUID4 of the requesting user.
+
+![Post Process](https://rode.forske.org/diagrams/login/post.drawio.svg)

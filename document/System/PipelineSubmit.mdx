@@ -1,0 +1,196 @@
+# Submit Service
+
+**This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
+
+<!-- Usage -->
+## <span id='Usage'>Image Usage</span>
+The image presented in this repository is the core Token service for the generation and validation of security tokens.
+
+<!-- prerequisites -->
+### <span id='Usage.Prerequisites'>Prerequisites</span>
+In order to run this container you will need docker installed.
+
+* [Windows](https://docs.docker.com/windows/started)
+* [OS X](https://docs.docker.com/mac/started/)
+* [Linux](https://docs.docker.com/linux/started/)
+
+<!-- tags -->
+### <span id='Usage.Tags'>Tags</span>
+The tags follow semantic versioning.
+
+The __latest__ tag is the most recent semver tag.
+
+The __dev__ tag is built to host the backend service with test routes on port 80.
+
+<!-- pulling -->
+### <span id='Usage.Pulling'>Pulling the image</span>
+To pull an image directly:
+
+```shell
+docker pull registry.forske.org/rode/submit:<tag>
+```
+
+<!-- volumes -->
+### <span id='Usage.Volumes'>Volumes</span>
+
+<table class='sub' id='resource'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 55%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Volume</th>
+            <th>Path</th>
+            <th>Tags</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class='left'>logs</td>
+            <td>/logs</td>
+            <td></td>
+            <td class='left'>Location of logfiles for logging request traffic</td>
+        </tr>
+        <tr>
+            <td class='left'>tmp</td>
+            <td>/tmp</td>
+            <td></td>
+            <td class='left'>Temporary file location - should be a shared location with cleanup services running for purging historic files</td>
+        </tr>
+        <tr>
+            <td class='left'>media</td>
+            <td>/media</td>
+            <td></td>
+            <td class='left'>The location of the base html templates for generating email bodies</td>
+        </tr>
+        <tr>
+            <td class='left'>source</td>
+            <td>/source</td>
+            <td>dev</td>
+            <td class='left'>The source code volume to include the source code in the running container</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 01-Design -->
+<!-- purpose -->
+## <span id='Purpose'>Purpose</span>
+The RODE Submit micro-service is to be used as an external service delivering the functionality around the submission of webforms from the RODE user interface.
+
+<!-- process -->
+
+
+<!-- 02-Process -->
+## <span id='Processing'>Processing</span>
+
+The __Process__ handler will handle __POST__ and __PUT__ requests.
+
+<!-- process -->
+### <span id='Processing.Process'>Process</span>
+
+<figure>
+    <img src='https://lucid.app/publicSegments/view/4e6ed275-0fd8-499c-9bef-df45e2c6689a/image.png' alt='Processing Process' />
+    <figcaption><strong>Figure</strong>: Processing Process</figcaption>
+</figure>
+
+<!-- 22.processing.request -->
+### <span id='Processing.Request'>Request</span>
+
+The __Processing__ handler is only present on the base route of the service.
+
+#### <span id='Processing.Request.Parameters'>Parameters</span>
+<table>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 60%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>form</td>
+            <td>Yes</td>
+            <td>The string representation of the RODE webform that is performing the submission</td>
+        </tr>
+    </tbody>
+</table>
+
+#### <span id='Processing.Request.Body'>Body</span>
+The request body is the form-data formatted object representing the data that is being submitted as part of the form submission request.
+
+<!-- response -->
+### <span id='Processing.Response'>Response</span>
+The possible responses are detailed below.
+
+<table>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 40%; text-align: center;'>
+    <col style='width: 40%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>200</td>
+            <td>The successful processing of the request</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,
+    "data": &lt;Next service data response&gt;
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td>The authorise method failed</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,
+    "errors": &lt;HandlerAuthorise errors&gt;
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>422</td>
+            <td>Parameter missing</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,
+    "errors": [{
+        "id": "form", 
+        "message": "missing"
+    }]
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>422</td>
+            <td>Payload validation failed</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,
+    "errors": [{
+        "id": &lt;input id&gt;, 
+        "message": &lt;form tooltip message&gt;
+    },
+    ...]
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>Next service processing failed</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,
+    "errors": &lt;Next service errors response&gt;
+}</code></pre></td>
+        </tr>
+    </tbody>
+</table>

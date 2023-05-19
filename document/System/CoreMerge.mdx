@@ -1,0 +1,131 @@
+# Data Entity Merge Service
+
+**This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
+
+## Mission
+> *The Research & Operational Data Environment - __RODE__, aims to be a fully federated data environment, simplifying data governance processes, and providing best available process automation.*
+
+## Background
+RODE was created within the [South Eastern Sydney Local Health District Research Office][SESLHD Research] to provide data driven insights into research undertaken within the health district. 
+
+This first iteration of RODE created a single data repository. 
+
+[MindGardens][MindGardens] provided the chance to form a strategic alliance to deliver a cross-jurisdictional data platform. This alliance afforded the creators of RODE the chance to design and implement a data platform that provides organisational specific data governance to all partners, while simultaneously delivering a reporting solution all available via a web application.
+
+## Documents
+The following documents are the system design and platform related documents for the RODE platform. The documentation is available at the [RODE Documentation Portal][RODEdocumentation].
+
+* [Requirements](https://rode.forske.org/Documentation/Requirements)
+
+<table>
+    <tr><th><a href='/Documentation/Requirements'>Requirements</a></th><td>
+        <p>The Requirements documentation detail the business, functional, non-functional, and user requirments of the development and operation of the RODE platform.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/Project'>Project</a></th><td>
+        <p>The Project documentation details the development timeframe and reporting for the RODE project as it relates to the MindGardens project scope.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/System'>System</a></th><td>
+        <p>The System documentation details the core design principles of the RODE platform as well as the process documentation for the system's microservices.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/DataArchitecture'>Data Architecture</a></th><td>
+        <p>The Data Architecture documentation details the data structures provided by the RODE platform.</p>
+        <p>This includes the ERM diagrams for the data entities.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/API'>API</a></th><td>
+        <p>The API documentation details the data structures for the delivery of data from the backend data services. This applies to all data delivery excepting the normalise service.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/UserInterface'>User Interface</a></th><td>
+        <p>The User Interface documentation details the components of the RODE user interface (frontend) and the definitions of the RODE sub-applications.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/Administrator'>Administrator</a></th><td>
+        <p>The Administrator documentation details the actions available to the differing levels of administrators that may be tasked with perfomring actions relating to the RODE platform.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/EndUser'>End User</a></th><td>
+        <p>The End User documentation details the actions available to End Users of the RODE platform and the rules and processes that govern data access, use, and release.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/MinData'>MinData</a></th><td>
+        <p>The MinData documentation details the governance of the RODE platform and the membership of the MinData steering group.</p>
+    </td></tr>
+    <tr><th><a href='/Documentation/Procedures'>Procedures</a></th><td>
+        <p>The Procedures documentation details the current system and governance procedures that define the methods of action of the RODE platform and MinData governance structure.</p>
+    </td></tr>
+</table>
+
+<!-- 98-CI_CD -->
+<!-- continuous delivery -->
+## <span id='CICD'>Continuous Delivery</span>
+
+<figure>
+    <img src='https://lucid.app/publicSegments/view/13e8b8db-adb6-41c0-b256-5160cfd1a688/image.png' alt='Reverse Proxy' />
+    <figcaption><strong>Figure</strong>: AWS Architecture</figcaption>
+</figure>
+
+<!-- trigger -->
+### <span id='CICD.Trigger'>Trigger</span>
+
+<!-- build -->
+### <span id='CICD.Build'>Build</span>
+
+#### <span id='CICD.Build.Docker_Image'>Docker Image</span>
+
+<!-- test -->
+### <span id='CICD.Test'>Test</span>
+
+#### <span id='CICD.Test.Unit_Testing'>Unit Testing</span>
+#### <span id='CICD.Test.SAST'>Static Asset Security Testing - SAST</span>
+#### <span id='CICD.Test.DAST'>Dynamic Application Security Testing - DAST</span>
+
+<!-- deploy -->
+### <span id='CICD.Deploy'>Deploy</span>
+
+#### <span id='CICD.Deploy.Publish'>Publish</span>
+
+<!-- 99-Contributing -->
+<!-- The details for who is allowed to contribute to the development of the microservice are here -->
+## <span id='Contributing'>Contributing</span>
+The only individuals authorised to contribute to this project are the members of the RODE development team. The members of the team and their role at the time of the contribution is listed below.
+
+<!-- The VERSIONING section states that the RODE development practices adhere to semantic versioning -->
+### <span id='Contributing.Versioning'>Versioning</span>
+The development of the RODE platform uses [SemVer](http://semver.org/) for versioning all microservices.
+
+<!-- The FORMATTING section states the general rules for the development practices of the RODE micro services source code -->
+### <span id='Contributing.Formatting'>Formatting</span>
+The format of the cource code files should adhere to the [PEP 8 standard](https://www.python.org/dev/peps/pep-0008/) - [Google Python style guide](https://google.github.io/styleguide/pyguide.html) (for Python files) or the [Google TypeScript style guide](https://google.github.io/styleguide/tsguide.html) (for TypeScript files).
+
+<!-- The CONTRIBUTORS section states the members of the RODE development team and the dates that they were active -->
+### <span id='Contributing.Contributors'>Contributors</span>
+<table class='sub' id='resource'>
+    <col style='width: 30%; text-align: left;'>
+    <col style='width: 50%; text-align: left;'>
+    <col style='width: 10%; text-align: center;'>
+    <col style='width: 10%; text-align: center;'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Commenced</th>
+            <th>Ceased</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href='mailto:Manuel.Nielsen@health.nsw.gov.au'>Manuel Nielsen</a></td>
+            <td>RODE Creator / Lead Developer</td>
+            <td>2021</td>
+            <td>Current</td>
+        </tr>
+        <tr>
+            <td><a href='mailto:Alexander.Barnes@health.nsw.gov.au'>Alexander Barnes</a></td>
+            <td>RODE Frontend Developer</td>
+            <td></td>
+            <td>Current</td>
+        </tr>
+        <tr>
+            <td><a href='mailto:Arash.Korrani@health.nsw.gov.au'>Arash Korrani</a></td>
+            <td>RODE Backend Developer</td>
+            <td></td>
+            <td>Current</td>
+        </tr>
+    </tbody>
+</table>

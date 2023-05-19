@@ -1,0 +1,102 @@
+# Query Data Delivery Service
+
+**This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
+
+<!-- Usage -->
+## <span id='Usage'>Image Usage</span>
+The image presented in this repository is the core Token service for the generation and validation of security tokens.
+
+<!-- prerequisites -->
+### <span id='Usage.Prerequisites'>Prerequisites</span>
+In order to run this container you will need docker installed.
+
+* [Windows](https://docs.docker.com/windows/started)
+* [OS X](https://docs.docker.com/mac/started/)
+* [Linux](https://docs.docker.com/linux/started/)
+
+<!-- tags -->
+### <span id='Usage.Tags'>Tags</span>
+The tags follow semantic versioning.
+
+The __latest__ tag is the most recent semver tag.
+
+The __dev__ tag is built to host the backend service with test routes on port 80.
+
+<!-- pulling -->
+### <span id='Usage.Pulling'>Pulling the image</span>
+To pull an image directly:
+
+```shell
+docker pull registry.forske.org/rode/query:<tag>
+```
+
+<!-- volumes -->
+### <span id='Usage.Volumes'>Volumes</span>
+
+<table class='sub' id='resource'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 55%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Volume</th>
+            <th>Path</th>
+            <th>Tags</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class='left'>logs</td>
+            <td>/logs</td>
+            <td></td>
+            <td class='left'>Location of logfiles for logging request traffic</td>
+        </tr>
+        <tr>
+            <td class='left'>tmp</td>
+            <td>/tmp</td>
+            <td></td>
+            <td class='left'>Temporary file location - should be a shared location with cleanup services running for purging historic files</td>
+        </tr>
+        <tr>
+            <td class='left'>media</td>
+            <td>/media</td>
+            <td></td>
+            <td class='left'>The location of the base html templates for generating email bodies</td>
+        </tr>
+        <tr>
+            <td class='left'>source</td>
+            <td>/source</td>
+            <td>dev</td>
+            <td class='left'>The source code volume to include the source code in the running container</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 01-Design -->
+<!-- purpose -->
+
+<!-- process -->
+
+
+<!-- 02-Get -->
+## <span id='Get'>Get</span>
+
+<!-- process -->
+### <span id='Get.Process'>Process</span>
+
+<figure>
+    <img src='https://lucid.app/publicSegments/view/a77626b9-5a4c-4efa-b44a-3237751f139d/image.png' alt='Get Process' />
+    <figcaption><strong>Figure</strong>: Get Process</figcaption>
+</figure>
+
+<!-- request -->
+### <span id='Get.Request'>Request</span>
+
+#### <span id='Get.Request.Parameters'>Parameters</span>
+
+#### <span id='Get.Request.Body'>Body</span>
+
+<!-- response -->
+### <span id='Get.Response'>Response</span>

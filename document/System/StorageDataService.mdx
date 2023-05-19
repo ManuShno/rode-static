@@ -1,0 +1,99 @@
+# Data Service HTTP Sidecar Service
+
+**This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
+
+## Purpose
+
+This project is to provide the http sidecar for the RODE data services. It allows for database operations to be performed as http requests.
+
+This microservice is designed to be horizontally scalable to meet traffic requirements and resource utilisation.
+
+## Design
+
+The data services operate in the same namespace as the RODE services. The data services contain a mysql data server and a horizontally scalable sidecar that exposes the databse operations as RESTful services.
+
+![Infrastructure](https://rode.forske.org/diagrams/data-service/infrastructure.drawio.svg)
+
+## Prerequisites
+
+This microservice is dependent on the following packages.
+
+| Package          |                     Documentation                      | Purpose                                                                                                                 |
+| :--------------- | :----------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------- |
+| **cython**       |              [link](https://cython.org/)               | The c compiler for converting python code to C. This is to enable a processing speed boost in the falcon configuration. |
+| **uvicorn**      |            [link](https://www.uvicorn.org/)            | The asynchronous ASGI web server implementation for the hosting of the falcon application.                              |
+| **falcon**       |    [link](https://falcon.readthedocs.io/en/stable/)    | The asgi application framework that is employed by the microservice.                                                    |
+| **asyncio**      | [link](https://docs.python.org/3/library/asyncio.html) | The concurrency manager for the asynchronous processing of tasks in the asgi application.                               |
+| **aiohttp**      |      [link](https://docs.aiohttp.org/en/stable/)       | The http request client for handling asynchronous http requests.                                                        |
+| **uuid**         |  [link](https://docs.python.org/3/library/uuid.html)   | The uuid string generator for the assignment of identifiers to entities.                                                |
+| **pyyaml**       |        [link](https://pypi.org/project/PyYAML/)        | A YAML data format processor to enable the reading of YAML formatted data to native python data structures.             |
+| **redis**        |       [link](https://github.com/redis/redis-py)        | The platform cache interface that connects to the sentinel enabled redis cluster.                                       |
+| **aiomysql**     |   [link](https://aiomysql.readthedocs.io/en/stable/)   | The database connection tool for the interactions with the mysql data servcie pod within the kubernetes deployment.     |
+| **cryptography** |       [link](https://cryptography.io/en/latest/)       | The requirement for creating a new connection to a recently launched kubernetes deployment.                             |
+
+## Volumes
+
+The following volumes are designed for use within the microservice. The available tags are:
+
+- PROD - production environment only
+- DEV - development environment only
+- ALL - required in all environments
+
+| Volume       | Path                   | Tags | Description                                                                                                    |
+| :----------- | :--------------------- | :--: | :------------------------------------------------------------------------------------------------------------- |
+| **logs**     | /logs                  | ALL  | Location of the logfiles for logging request / error / system traffic                                          |
+| **tmp**      | /tmp                   | ALL  | Temporary file location - should be a shared location with cleanup services running for purging historic files |
+| **media**    | /media                 | ALL  | The location of the base static assets for the platform                                                        |
+| **source**   | /source                | DEV  | The source code volume to include the source code in the running container                                     |
+| **data**     | /var/lib/mysql         | ALL  | The database values for persistent storage across container restarts                                           |
+| **backup**   | /backup                | ALL  | The database backup directory for storing database dump outputs                                                |
+| **keystore** | /var/lib/mysql-keyring | ALL  | The database encryption keystore for database encryption at rest                                               |
+
+## Additional Documentation
+
+Additional documentation for the technical implementation of the microservice please visit the Administration portal within the user interface. Authentication with the system will need to occur before this portal is available.
+
+## Methods
+
+The methods section details the http methods which are available for querying. These will then perform the background operations to prepare statements for database interactions.
+
+### Routes
+
+The routes are the url routing rules for the method requests.
+
+| Route                |    Stage    | GET | POST | PUT | PATCH | DELETE | Purpose                                                                                                                                                                     |
+| :------------------- | :---------: | :-: | :--: | :-: | :---: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| /healthz             |     All     |     |      |     |       |        | The health check route that will be queried by the kubernetes health checks.                                                                                                |
+| /base                |     All     |     |      |     |       |        | The route for testing the initialisation of the development environment.                                                                                                    |
+| /{table}             | Production  |     |      |     |       |        | The route by which http requests should be received for manipulating data within the production environment. This should only ever be accessed from within the K8s cluster. |
+| /{base}/{db}/{table} | Development |     |      |     |       |        | The route by which http requests should be received for manipulating data within the development environment.                                                               |
+
+### Get
+
+The get method handler is responsible for the processing of http GET requests. These requests will generate SQL select statements and perform the operations against the database. The returned values represent the data within the database.
+
+![Get Process](https://rode.forske.org/diagrams/data-service/get.drawio.svg)
+
+### Post
+
+The post method handler is responsible for the processing of http POST requests. These requests will generate SQL insert statements and perform the operations against the database. If there are warnings in the operations performing (due to unique key constraints in the data structure) the insert statement will be peformed after an update of the existing values (end-dating the validity of the current values). The returned values represent the status of the operations performed in the database.
+
+![Post Process](https://rode.forske.org/diagrams/data-service/post.drawio.svg)
+
+### Put
+
+The put method handler is responsible for the processing of http PUT requests. These requests will generate SQL update and insert statements and perform the operations against the database. This process is similar to the operations performed by the POST process when warnings occur. The returned values represent the status of the operations performed in the database.
+
+![Put Process](https://rode.forske.org/diagrams/data-service/put.drawio.svg)
+
+### Patch
+
+The patch method handler is responsible for the processing of http PATCH requests. These requests will generate SQL update statements and perform the operations against the database. The returned values represent the status of the operations performed in the database.
+
+![Put Process](https://rode.forske.org/diagrams/data-service/patch.drawio.svg)
+
+### Delete
+
+The delete method handler is responsible for the processing of http DELETE requests. These requests will generate SQL update (or delete statements if particular parameters are present) and perform the operations against the databse. The returned values represent the status of the operations performed in the database.
+
+![Delete Process](https://rode.forske.org/diagrams/data-service/delete.drawio.svg)

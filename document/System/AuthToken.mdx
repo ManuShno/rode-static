@@ -1,0 +1,357 @@
+# Token Management Service
+
+**This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
+
+<!-- Usage -->
+## <span id='Usage'>Image Usage</span>
+The image presented in this repository is the core Token service for the generation and validation of security tokens.
+
+<!-- prerequisites -->
+### <span id='Usage.Prerequisites'>Prerequisites</span>
+In order to run this container you will need docker installed.
+
+* [Windows](https://docs.docker.com/windows/started)
+* [OS X](https://docs.docker.com/mac/started/)
+* [Linux](https://docs.docker.com/linux/started/)
+
+<!-- tags -->
+### <span id='Usage.Tags'>Tags</span>
+The tags follow semantic versioning.
+
+The __latest__ tag is the most recent semver tag.
+
+The __dev__ tag is built to host the backend service with test routes on port 80.
+
+<!-- pulling -->
+### <span id='Usage.Pulling'>Pulling the image</span>
+To pull an image directly:
+
+```shell
+docker pull registry.forske.org/rode/token:<tag>
+```
+
+<!-- volumes -->
+### <span id='Usage.Volumes'>Volumes</span>
+
+<table class='sub' id='resource'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 15%; text-align: center;'>
+    <col style='width: 55%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Volume</th>
+            <th>Path</th>
+            <th>Tags</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class='left'>logs</td>
+            <td>/logs</td>
+            <td></td>
+            <td class='left'>Location of logfiles for logging request traffic</td>
+        </tr>
+        <tr>
+            <td class='left'>tmp</td>
+            <td>/tmp</td>
+            <td></td>
+            <td class='left'>Temporary file location - should be a shared location with cleanup services running for purging historic files</td>
+        </tr>
+        <tr>
+            <td class='left'>media</td>
+            <td>/media</td>
+            <td></td>
+            <td class='left'>The location of the base html templates for generating email bodies</td>
+        </tr>
+        <tr>
+            <td class='left'>source</td>
+            <td>/source</td>
+            <td>dev</td>
+            <td class='left'>The source code volume to include the source code in the running container</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 01-Design -->
+<!-- purpose -->
+## <span id='Purpose'>Purpose</span>
+The RODE Token micro-service is to be used as an internal service delivering the functionality around the creation and validation of user JSON Web Tokens (JWT).
+
+<!-- process -->
+
+
+<!-- 02-Get -->
+## <span id='Get'>Get</span>
+The __Get__ method handler will create a new JSON Web Token to be used in the security of the RODE platform.
+
+The JWT is the encoded reperesentation of the user entity.
+
+<!-- process -->
+### <span id='Get.Process'>Process</span>
+
+<figure>
+    <img src='https://lucid.app/publicSegments/view/a8d906b7-c1f8-413b-8151-ff69395b4759/image.png' alt='Get Process' />
+    <figcaption><strong>Figure</strong>: Get Process</figcaption>
+</figure>
+
+<!-- request -->
+### <span id='Get.Request'>Request</span>
+
+The __Get__ method handler is only present on the base route of the service.
+
+#### <span id='Get.Request.Parameters'>Parameters</span>
+The parameter of __system__ will be applied automatcially when using the base image's __self.internal_request__ method.
+
+<table>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 60%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>user</td>
+            <td>Yes</td>
+            <td>The string representation of the uuid4 of the user making the request</td>
+        </tr>
+        <tr>
+            <td>system</td>
+            <td>Yes</td>
+            <td>The string representation of the RODE system token to denote internal requests</td>
+        </tr>
+    </tbody>
+</table>
+
+#### <span id='Get.Request.Body'>Body</span>
+The __Get__ method does not accept a request body.
+
+<!-- 23.get.response -->
+### <span id='Get.Response'>Response</span>
+The possible responses are detailed below.
+
+<table>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 40%; text-align: center;'>
+    <col style='width: 40%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>200</td>
+            <td>The successful processing of the request</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "data": {
+        "self": &lt;user uuid4&gt;,
+        "token": &lt;JSON Web Token&gt;,
+        "user": &lt;user entity&gt;
+    }
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>Missing parameters</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "errors": [{
+        "id": &gt;parameter key&gt;,
+        "message": "missing"
+    }]
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>Session storage failed</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "errors": [ &lt;MySQL generated errors&gt; ]
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td>User uuid4 not present in database</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "errors": [{
+        "id": "user",
+        "message": "invalid"
+    }]
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td>Token encoding failed</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "errors": [{
+        "id": "token",
+        "message": "encoding failure"
+    }]
+}</code></pre></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 03-Patch -->
+## <span id='Patch'>Patch</span>
+
+The __Patch__ method handler will receive both the user id in uuid4 string representation and the JSON Web Token of the user.
+
+The request will authenticate the request and return dictionary representation of the user entity.
+
+<!-- process -->
+### <span id='Patch.Process'>Process</span>
+
+<figure>
+    <img src='https://lucid.app/publicSegments/view/65ddc960-2f55-4c53-8a28-477b5db69e10/image.png' alt='Patch Process' />
+    <figcaption><strong>Figure</strong>: Patch Process</figcaption>
+</figure>
+
+<!-- request -->
+### <span id='Patch.Request'>Request</span>
+The __Patch__ method handler is only present on the base route of the service.
+
+#### <span id='Patch.Request.Parameters'>Parameters</span>
+The parameter of __system__ will be applied automatcially when using the base image's __self.internal_request__ method.
+
+<table>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 60%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>user</td>
+            <td>Yes</td>
+            <td>The string representation of the uuid4 of the user making the request</td>
+        </tr>
+        <tr>
+            <td>system</td>
+            <td>Yes</td>
+            <td>The string representation of the RODE system token to denote internal requests</td>
+        </tr>
+        <tr>
+            <td>token</td>
+            <td>Yes</td>
+            <td>The string representation of the JSON Web Token to authenticate</td>
+        </tr>
+    </tbody>
+</table>
+
+#### <span id='Patch.Request.Parameters'>Body</span>
+The __Patch__ method does not accept a request body.
+
+<!-- response -->
+### <span id='Patch.Response'>Response</span>
+The responses detailed below are in addition to the responses that could be presented by the base image.
+
+<table>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 40%; text-align: center;'>
+    <col style='width: 40%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<table>
+    <col style='width: 20%; text-align: center;'>
+    <col style='width: 40%; text-align: center;'>
+    <col style='width: 40%; text-align: left;'>
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>200</td>
+            <td>The successful processing of the request</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "data": &lt;user entity&gt;
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>Missing parameters</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "errors": [{
+        "id": &gt;parameter key&gt;,
+        "message": "missing"
+    }]
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td>JSON Web Token not validated</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "errors": [{
+        "id": "token",
+        "message": "invalid"
+    }]
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td>User uuid4 not present in database</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "errors": [{
+        "id": "user",
+        "message": "invalid"
+    }]
+}</code></pre></td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td>User has no active sessions</td>
+            <td>
+<pre><code><!-- language: lang-json -->{
+    &lt;request metadata&gt;,   
+    "errors": [{
+        "id": "user",
+        "message": "inactive"
+    }]
+}</code></pre></td>
+        </tr>
+    </tbody>
+</table>

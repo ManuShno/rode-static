@@ -1,0 +1,53 @@
+# SMTP Service
+
+**This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
+
+## Purpose
+
+The RODE SMTP micro-service is to be used as an internal service delivering the functionality around the creation and transmission of html formatted emails.
+
+## Prerequisites
+
+This microservice is dependent on the following packages.
+
+| Package | Documentation | Purpose                                                             |
+| :------ | :-----------: | :------------------------------------------------------------------ |
+| cython  |               |                                                                     |
+| uvicorn |               |                                                                     |
+| falcon  |               | The asgi application framework that is employed by the microservice |
+| asyncio |               |
+| aiohttp |               |
+| uuid    |               |
+| pyyaml  |               |
+| redis   |               |
+
+## Volumes
+
+| Volume | Path    | Tags | Description                                                                                                    |
+| :----- | :------ | :--: | :------------------------------------------------------------------------------------------------------------- |
+| logs   | /logs   | REQ  | Location of the logfiles for logging request / error / system traffic                                          |
+| tmp    | /tmp    |      | Temporary file location - should be a shared location with cleanup services running for purging historic files |
+| media  | /media  |      | The location of the base static assets for the platform                                                        |
+| source | /source | DEV  | The source code volume to include the source code in the running container                                     |
+
+## Methods
+
+The methods section details the http methods which are available for querying. These will then perform the background operations to prepare statements for database interactions.
+
+### Routes
+
+The routes are the url routing rules for the method requests.
+
+| Route    | Stage | GET | POST | PUT | PATCH | DELETE | Purpose                                                                                     |
+| :------- | :---: | :-: | :--: | :-: | :---: | :----: | :------------------------------------------------------------------------------------------ |
+| /healthz |  All  |     |      |     |       |        | The health check route that will be queried by the kubernetes health checks.                |
+| /base    |  All  |     |      |     |       |        | The route for testing the initialisation of the development environment.                    |
+| /        |  All  |     |      |     |       |        | The route by which http requests should be received for generating and transmitting emails. |
+
+### Request Methods
+
+#### Post
+
+The post method handler will create a new html formatted email and transmit the email via the ENV defined SMTP server.
+
+![Post Process](https://lucid.app/publicSegments/view/a304cacc-b658-451f-9a75-0125019f84d9/image.png)

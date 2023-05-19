@@ -1,0 +1,13 @@
+# Cache Cluster
+
+**This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
+
+## Purpose
+
+The cache cluster provides the means by which operational system values can be shared between the various microservices in the RODE platform architecture. This cache is an in-memory store to allow access at high speed and allows the RODE microservices to remove the need for long term storage of values in container memory.
+
+## Design
+
+The cache services operate in a separate namespace from the RODE services. The system contains a redis sentinel cluster that health monitors and load balances traffic between the stateful set pods related to the redis cluster. One master is assigned at a time and the master assignment is managed by the sentinel stateful set.
+
+![Infrastructure](https://rode.forske.org/diagrams/cache/infrastructure.drawio.svg)
