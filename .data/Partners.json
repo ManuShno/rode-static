@@ -1,6 +1,9 @@
 {
     "title": "RODE Partners",
-    "center": { "lat": -33.955, "lng": 151.130 },
+    "center": {
+        "lat": -33.955,
+        "lng": 151.130
+    },
     "minHeight": "500px",
     "minWidth": "500px",
     "markers": [
