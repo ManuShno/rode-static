@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Overview",
+        "order": 1
+    },
+    {
+        "name": "Process",
+        "order": 2
+    },
+    {
+        "name": "Business",
+        "order": 10
+    },
+    {
+        "name": "Stakeholder",
+        "order": 11
+    },
+    {
+        "name": "Solution",
+        "order": 12
+    },
+    {
+        "name": "Information",
+        "order": 13
+    },
+    {
+        "name": "Functional",
+        "order": 14
+    },
+    {
+        "name": "User",
+        "order": 15
+    },
+    {
+        "name": "System",
+        "order": 16
+    },
+    {
+        "name": "Security",
+        "order": 17
+    },
+    {
+        "name": "Glossary",
+        "order": 90
+    },
+    {
+        "name": "Authors",
+        "order": 91
+    },
+    {
+        "name": "Related Documents",
+        "order": 98
+    },
+    {
+        "name": "References",
+        "order": 99
+    }
+]

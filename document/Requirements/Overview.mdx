@@ -1,0 +1,61 @@
+[MindGardens]: https://www.mindgardens.org.au/
+[Black Dog]: https://www.blackdoginstitute.org.au/
+[Neura]: https://www.neura.edu.au/
+[SESLHD]: https://www.seslhd.health.nsw.gov.au/
+[SESLHD Research]: https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research
+[UNSW]: https://www.unsw.edu.au/
+[CESPHN]: https://www.cesphn.org.au/
+
+# Introduction
+
+This project is a joint venture between the [South Eastern Sydney Local Health District][SESLHD] - **_SESLHD_** and [Mindgardens Neuroscience Network][MindGardens] - **_Mindgardens_**, with the [Central and Eastern Sydney Primary Health Network][CESPHN] - **_CESPHN_**. Its objectives are to create a repository - the **Research & Operational Data Environment** - **_RODE_**, containing clinical, eMR and other data relevant to the provision of healthcare services, and make this data available to individuals and relevant institutions for the purpose of translational research. The areas of healthcare specifically targeted at the moment are **mental health**, **drugs and addictions**, and **neurosciences**.
+
+## Background
+
+[Research within SESLHD][SESLHD Research] has historically been fragmented, driven by individual researchers and teams, with little or no enterprise oversight, coordination or support. Recently, however, a more holistic approach has been adopted, reflected by the development of the SESLHD Research Strategy 2017 – 2021, and the creation / elevation of the role of SESLHD Director of Research, as a direct report to the Chief Executive of the LHD. Associate Professor White now holds the role, and has been tasked with delivering the objectives of the Strategy.
+
+In parallel, the [Mindgardens Neuroscience Network][MindGardens] was established in 2017 as a collaborative of [The Black Dog Institute][BlackDog], [Neuroscience Research Australia (NeuRA)][Neura], [SESLHD][SESLHD] and [UNSW Sydney][UNSW], with the objective of becoming “a leading global centre for innovation in brain disorder healthcare”. Mindgardens has recently received Federal government funding, and will be using this to support pilot programs, including this project, which respond to the goal of developing “innovative data technologies to build prevention tools to support early intervention for both the patient and the clinician”.
+
+The project is currently in the initiation phase, the objective of which is to create the foundation for the subsequent execution / delivery, by identifying stakeholders, setting up a governance / steering committee, and developing an agreed set of requirements.
+
+## Scope
+
+### In Scope
+
+**Note**: The scope defined below is a high-level view of what is to be delivered by the entire project. It should also be noted that the specific goals of the Mindgardens Network, namely translational research within the domain of mental health, neurological and substance abuse disorders will be prioritised within the Research area.
+
+| Phase      | In Scope                                                                                                                                                                                                                                                                  |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Initiation | Research-specific content of an approved requirements document including detailed Information and Functional requirements.<br/>Pre-requisites for the above are:<br/>• Incorporation of the MinData project as the Research Stream of the SESLHD DWH warehouse initiative |
+| Planning   | Research-specific content of:<br/>• an approved Detailed Design document, including data model<br/>• other SESLHD DWH initiative project management atrefacts, including a Test Plan                                                                                      |
+| Execution  | Operational data repository, including:<br/>• Data ingestion (initial and ongoing) - Extract, Transform, & Load<br/>• User Interface<br/>• Data Export<br/>Operational support processes and related documentation<br/>Approved test results                              |
+
+### Out of Scope
+
+| Phase | Out of Scope                                                                                                                                                                                                                                                                                   |
+| :---- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| All   | Requirements, design elements and data repository elements (data tables, ingestion processes, etc.) outside the mental health research domain. However, the design process should ensure that the solution is general enough to be expanded to include these.<br/>A data analytics environment |
+
+## Assumptions
+
+- Health ICT staff will be available to contribute to the project as and when required
+- Appropriate individual stakeholders will be identified from the Mindgardens partner organisations, and will contribute time and expertise as and when required, for purposes including:
+  - Participation in the governance / steering committee
+  - Requirements development, including use case definition
+  - Acceptance testing
+  - Etc.
+- Project funding will be available as required for future phases
+- Resources with appropriate domain specific skills in data warehousing and research ethics will be available or obtained when required.
+- The project governance / steering committee will be able to negotiate access to the desired sources of primary data.
+
+## Dependencies
+
+- The current / prototype system has been developed, and is currently being supported and expanded, by Manuel Nielsen, a contracted Project Officer currently working within the Research Office. His continued availability to the project during the initiation and future phases will be critical.
+- The project depends on funding supplied by Mindgardens, and therefore must meet Mindgardens’ criteria for approval of each phase and commencement of the next.
+- Access to primary data sources, including Cerner and other clinical, electronic medical records and operational systems is a critical dependency.
+- A recently announced SESLHD data warehouse initiative will undoubtedly impact this project, but will hopefully provide synergies like resource sharing, or potentially even deliver some components of the end-to-end solution
+
+## Constraints
+
+- The extent of future sources of primary data is unknown. While the data model will be generalised, to support the widest possible range of sources, a limited number of primary sources, to be determined during the planning phase, will be catered for in the initial implementation
+- Development of requirements will concentrate on the areas of neurological, mental health and substance use disorders.
