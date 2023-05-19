@@ -1,27 +1,102 @@
 [
-    {"id": "cache", "label": "Cache" },
-    {"id": "data-service", "label": "Data Services" },
-    {"id": "entity", "label": "Entity" },
-    {"id": "hl7", "label": "HL7" },
-    {"id": "load", "label": "Load" },
-    {"id": "login", "label": "Login" },
-    {"id": "media", "label": "Media" },
-    {"id": "merge", "label": "Merge" },
-    {"id": "mfa", "label": "MFA" },
-    {"id": "normalise", "label": "Normalise" },
-    {"id": "password", "label": "Password" },
-    {"id": "project", "label": "Project" },
-    {"id": "query", "label": "Query" },
-    {"id": "register", "label": "Register" },
-    {"id": "registry", "label": "Registry" },
-    {"id": "renew", "label": "Renew" },
-    {"id": "schedule", "label": "Schedule" },
-    {"id": "scraper", "label": "Scraper" },
-    {"id": "smtp", "label": "SMTP" },
-    {"id": "socket", "label": "Socket" },
-    {"id": "submit", "label": "Submit" },
-    {"id": "token", "label": "Token" },
-    {"id": "transform", "label": "Transform" },
-    {"id": "upload", "label": "Upload" },
-    {"id": "user-interface", "label": "User Interface" }
+    {
+        "id": "cache",
+        "label": "Cache"
+    },
+    {
+        "id": "data-service",
+        "label": "Data Services"
+    },
+    {
+        "id": "entity",
+        "label": "Entity"
+    },
+    {
+        "id": "hl7",
+        "label": "HL7"
+    },
+    {
+        "id": "load",
+        "label": "Load"
+    },
+    {
+        "id": "login",
+        "label": "Login"
+    },
+    {
+        "id": "media",
+        "label": "Media"
+    },
+    {
+        "id": "merge",
+        "label": "Merge"
+    },
+    {
+        "id": "mfa",
+        "label": "MFA"
+    },
+    {
+        "id": "normalise",
+        "label": "Normalise"
+    },
+    {
+        "id": "password",
+        "label": "Password"
+    },
+    {
+        "id": "project",
+        "label": "Project"
+    },
+    {
+        "id": "query",
+        "label": "Query"
+    },
+    {
+        "id": "register",
+        "label": "Register"
+    },
+    {
+        "id": "registry",
+        "label": "Registry"
+    },
+    {
+        "id": "renew",
+        "label": "Renew"
+    },
+    {
+        "id": "schedule",
+        "label": "Schedule"
+    },
+    {
+        "id": "scraper",
+        "label": "Scraper"
+    },
+    {
+        "id": "smtp",
+        "label": "SMTP"
+    },
+    {
+        "id": "socket",
+        "label": "Socket"
+    },
+    {
+        "id": "submit",
+        "label": "Submit"
+    },
+    {
+        "id": "token",
+        "label": "Token"
+    },
+    {
+        "id": "transform",
+        "label": "Transform"
+    },
+    {
+        "id": "upload",
+        "label": "Upload"
+    },
+    {
+        "id": "user-interface",
+        "label": "User Interface"
+    }
 ]
