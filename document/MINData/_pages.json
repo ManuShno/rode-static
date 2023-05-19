@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Overview",
+        "order": 1
+    },
+    {
+        "name": "Partners",
+        "order": 2
+    },
+    {
+        "name": "Executive Summary",
+        "order": 3
+    },
+    {
+        "name": "Purpose",
+        "order": 10
+    },
+    {
+        "name": "Mind Gardens",
+        "order": 11
+    },
+    {
+        "name": "Values and Ethos",
+        "order": 12
+    },
+    {
+        "name": "The Five Safes",
+        "order": 13
+    },
+    {
+        "name": "RODE",
+        "order": 14
+    },
+    {
+        "name": "Governance",
+        "order": 15
+    },
+    {
+        "name": "Data Sharing Pathways",
+        "order": 16
+    },
+    {
+        "name": "Intellectual Property",
+        "order": 17
+    },
+    {
+        "name": "Application of the Framework",
+        "order": 18
+    },
+    {
+        "name": "Acknowledgements",
+        "order": 30
+    },
+    {
+        "name": "References",
+        "order": 31
+    },
+    {
+        "name": "Schedule A: Partners and Sponsors",
+        "order": 50
+    }
+]
