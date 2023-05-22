@@ -32,54 +32,12 @@ docker pull registry.forske.org/rode/schedule:<tag>
 
 ### <span id='Usage.Volumes'>Volumes</span>
 
-<table class="sub" id="resource">
-  <col style="width: 15%; text-align: center;" />
-  <col style="width: 15%; text-align: center;" />
-  <col style="width: 15%; text-align: center;" />
-  <col style="width: 55%; text-align: left;" />
-  <thead>
-    <tr>
-      <th>Volume</th>
-      <th>Path</th>
-      <th>Tags</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="left">logs</td>
-      <td>/logs</td>
-      <td></td>
-      <td class="left">Location of logfiles for logging request traffic</td>
-    </tr>
-    <tr>
-      <td class="left">tmp</td>
-      <td>/tmp</td>
-      <td></td>
-      <td class="left">
-        Temporary file location - should be a shared location with cleanup
-        services running for purging historic files
-      </td>
-    </tr>
-    <tr>
-      <td class="left">media</td>
-      <td>/media</td>
-      <td></td>
-      <td class="left">
-        The location of the base html templates for generating email bodies
-      </td>
-    </tr>
-    <tr>
-      <td class="left">source</td>
-      <td>/source</td>
-      <td>dev</td>
-      <td class="left">
-        The source code volume to include the source code in the running
-        container
-      </td>
-    </tr>
-  </tbody>
-</table>
+| Volume |  Path   | Tags | Description                                                                                                    |
+| :----: | :-----: | :--: | :------------------------------------------------------------------------------------------------------------- |
+|  logs  |  /logs  |      | Location of logfiles for logging request traffic                                                               |
+|  tmp   |  /tmp   |      | Temporary file location - should be a shared location with cleanup services running for purging historic files |
+| media  | /media  |      | The location of the base html templates for generating email bodies                                            |
+| source | /source | dev  | The source code volume to include the source code in the running container                                     |
 
 ### <span id='Async.Process'>Process</span>
 
