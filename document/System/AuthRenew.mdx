@@ -2,11 +2,11 @@
 
 **This project is part of proprietary software authored and controlled by [South Eastern Sydney Local Health District](https://www.seslhd.health.nsw.gov.au/services-clinics/directory/research) and [Manuel Nielsen](mailto:Manuel.Nielsen@health.nsw.gov.au).**
 
-## <span id='Usage'>Image Usage</span>
+## Image Usage
 
 The image presented in this repository is the core Token service for the generation and validation of security tokens.
 
-### <span id='Usage.Prerequisites'>Prerequisites</span>
+### Prerequisites
 
 In order to run this container you will need docker installed.
 
@@ -14,7 +14,7 @@ In order to run this container you will need docker installed.
 - [OS X](https://docs.docker.com/mac/started/)
 - [Linux](https://docs.docker.com/linux/started/)
 
-### <span id='Usage.Tags'>Tags</span>
+### Tags
 
 The tags follow semantic versioning.
 
@@ -30,76 +30,26 @@ To pull an image directly:
 docker pull registry.forske.org/rode/renew:<tag>
 ```
 
-### <span id='Usage.Volumes'>Volumes</span>
+### Volumes
 
-<table class="sub" id="resource">
-  <col style="width: 15%; text-align: center;" />
-  <col style="width: 15%; text-align: center;" />
-  <col style="width: 15%; text-align: center;" />
-  <col style="width: 55%; text-align: left;" />
-  <thead>
-    <tr>
-      <th>Volume</th>
-      <th>Path</th>
-      <th>Tags</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="left">logs</td>
-      <td>/logs</td>
-      <td></td>
-      <td class="left">Location of logfiles for logging request traffic</td>
-    </tr>
-    <tr>
-      <td class="left">tmp</td>
-      <td>/tmp</td>
-      <td></td>
-      <td class="left">
-        Temporary file location - should be a shared location with cleanup
-        services running for purging historic files
-      </td>
-    </tr>
-    <tr>
-      <td class="left">media</td>
-      <td>/media</td>
-      <td></td>
-      <td class="left">
-        The location of the base html templates for generating email bodies
-      </td>
-    </tr>
-    <tr>
-      <td class="left">source</td>
-      <td>/source</td>
-      <td>dev</td>
-      <td class="left">
-        The source code volume to include the source code in the running
-        container
-      </td>
-    </tr>
-  </tbody>
-</table>
+| Volume | Path | Tags | Description |
+| :--- | :---: | :---: | :--- |
+| logs | /logs | | Location of logfiles for logging request traffic |
+| tmp | /tmp | | Temporary file location - should be a shared location with cleanup services running for purging historic files |
+| media | /media | | The location of the base html templates for generating email bodies |
+| source | /source | dev | The source code volume to include the source code in the running container |
 
-## <span id='Get'>Get</span>
+## Get
 
 The **Get** method handler will create a new JSON Web Token to be used in the security of the RODE platform.
 
 The JWT is the encoded reperesentation of the user entity.
 
-### <span id='Get.Process'>Process</span>
+### Process
 
-<figure>
-  <img
-    src="https://lucid.app/publicSegments/view/bc755fc8-5baf-4498-a9ed-513e97c9a535/image.png"
-    alt="Get Process"
-  />
-  <figcaption>
-    <strong>Figure</strong>: Get Process
-  </figcaption>
-</figure>
+<!-- ![]() -->
 
-### <span id='Get.Request'>Request</span>
+### Request
 
 The **Get** method handler is only present on the base route of the service.
 
