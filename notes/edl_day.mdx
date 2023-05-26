@@ -19,22 +19,28 @@
 * Births deaths and marriages
 * other systems (state and federal)
 
-ODS?
-
-
-
 ## Central extracts are available
 
-* Central data dicitonary tool (git health)
+* Central data dictionary tool (git health)
 
 ## Governance
 
 * peak custodian for all systems
 * system specific steward
 
-## Costs
+## Costs (Kashif Magbool)
 
+* payg - consumption based
+* data storage, data ingestion, data consumption
+* cost calculator (estimator) - [calculator](no_link) excel file
+* ehealth absorbs onboarding costs
+* real-time costs more - latency < => cost <
 
+| type | calculation | price |
+| :--- | :--- | ---: |
+| storage | 1000 - 125% (source), 500 - 750 (own) | 1359 |
+| ingestion | 20 tables (source, daily), 10 tables (own, daily) | 990 |
+| consumption | daily, 10 tables, uptime (6 hours), workdays (20 /month), 200 daily queries, 25% simple 75% complex, 50 caching | 3277 |
 
 ## Issues raised
 
@@ -44,3 +50,4 @@ ODS?
 * Data dictionaries for the data in the EDL
 * Data system replication between LHDs
 * SDPR - single digital patient record
+* ODS - operational data store
