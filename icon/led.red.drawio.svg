@@ -1,0 +1,22 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="251px" height="251px" viewBox="-0.5 -0.5 251 251" content="&lt;mxfile&gt;&lt;diagram id=&quot;SYK8yyDzBN1tJbboYSI5&quot; name=&quot;Page-1&quot;&gt;1ZXLboMwEEW/hj3gPMo25NFNV1l0beEBrBqMjBOgX9+hmIcFqVIJVSoLZJ/xMMy9NjgkzOqLokX6JhkIx3dZ7ZCj4/tkv8N7C5oOBC9BBxLFWYe8EVz5JxjoGnrjDEproZZSaF7YMJJ5DpG2GFVKVvayWAq7akETmIFrRMWcvnOmU0N3rjsGXoEnqSkd9IGM9osNKFPKZDVB5OSQUEmpu1FWhyBa7Xpdurzzg+jwYgpy/UzCpku4U3EzvZn30k3fLCagrjg5VCnXcC1o1EYqdBZZqjOBMw+HiaKMY91QCqmQMYjpTehJ5MgV2sFljtEWUUw9lFrJD+iTcpm3peZ9mNbuoDTUE2T6uoDMQKsGl9T2ZmnsaTUa5m8NSydeDZCaTZIMTx51xIGRclnW7Yqy0rLo9nDMa2ALOhvJfhQ55kL06x2fnM8uXo/EHzalu44TxHaCLDjhLTnhreDEbkUnZiK214IhU4F/v/Ul1ue61YqspH9g67+d6+9tFvT3/BX03//lSVgy5bnjgM16M0PGD5h1IkaDvP93QHA6/l2+Y5NfNDl9AQ==&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <radialGradient x1="0%" y1="0%" x2="0%" y2="0%" id="mx-gradient-ffffff-1-000000-1-r-0">
+            <stop offset="0%" style="stop-color: rgb(255, 255, 255); stop-opacity: 1;"/>
+            <stop offset="100%" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"/>
+        </radialGradient>
+        <radialGradient x1="0%" y1="0%" x2="0%" y2="0%" id="mx-gradient-ffffff-1-ff0000-1-r-0">
+            <stop offset="0%" style="stop-color: rgb(255, 255, 255); stop-opacity: 1;"/>
+            <stop offset="100%" style="stop-color: rgb(255, 0, 0); stop-opacity: 1;"/>
+        </radialGradient>
+        <radialGradient x1="0%" y1="0%" x2="0%" y2="0%" id="mx-gradient-ff2121-1-ffffff-1-r-0">
+            <stop offset="0%" style="stop-color: rgb(255, 33, 33); stop-opacity: 1;"/>
+            <stop offset="100%" style="stop-color: rgb(255, 255, 255); stop-opacity: 1;"/>
+        </radialGradient>
+    </defs>
+    <g>
+        <ellipse cx="125" cy="125" rx="125" ry="125" fill="url(#mx-gradient-ffffff-1-000000-1-r-0)" stroke="none" pointer-events="all"/>
+        <ellipse cx="125" cy="125" rx="105" ry="105" fill="#ff0000" stroke="none" pointer-events="all"/>
+        <ellipse cx="150" cy="100" rx="70" ry="60" fill-opacity="0.3" fill="url(#mx-gradient-ffffff-1-ff0000-1-r-0)" stroke="none" pointer-events="all"/>
+        <ellipse cx="125" cy="125" rx="105" ry="105" fill-opacity="0.1" fill="url(#mx-gradient-ff2121-1-ffffff-1-r-0)" stroke="rgb(0, 0, 0)" stroke-opacity="0.1" pointer-events="all"/>
+    </g>
+</svg>
