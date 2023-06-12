@@ -1,0 +1,11 @@
+{
+  "short_name": "RODE",
+  "name": "RODE",
+  "description": "",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "rgba(40,36,41,0.1)",
+  "icons": [
+  ]
+}
