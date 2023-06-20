@@ -12,11 +12,19 @@
         "order": 11
     },
     {
-        "name": "QRG12",
-        "order": 12
-    },
-    {
         "name": "QRG20",
         "order": 20
+    },
+    {
+        "name": "QRG21",
+        "order": 21
+    },
+    {
+        "name": "QRG22",
+        "order": 22
+    },
+    {
+        "name": "QRG30",
+        "order": 30
     }
 ]
