@@ -10,5 +10,57 @@
     {
         "name": "TSP11",
         "order": 11
+    },
+    {
+        "name": "TSP12",
+        "order": 12
+    },
+    {
+        "name": "TSP20",
+        "order": 20
+    },
+    {
+        "name": "TSP21",
+        "order": 21
+    },
+    {
+        "name": "TSP22",
+        "order": 22
+    },
+    {
+        "name": "TSP23",
+        "order": 23
+    },
+    {
+        "name": "TSP24",
+        "order": 24
+    },
+    {
+        "name": "TSP25",
+        "order": 25
+    },
+    {
+        "name": "TSP30",
+        "order": 30
+    },
+    {
+        "name": "TSP31",
+        "order": 31
+    },
+    {
+        "name": "TSP32",
+        "order": 32
+    },
+    {
+        "name": "TSP32",
+        "order": 33
+    },
+    {
+        "name": "TSP50",
+        "order": 50
+    },
+    {
+        "name": "TSP51",
+        "order": 51
     }
 ]
