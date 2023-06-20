@@ -1,7 +1,9 @@
 # Authentication
-The RODE platform is 
+
+The RODE platform is
 
 ## Password Security
+
 User passwords are stored in database as a salted and hashed value.
 
 The salt for the password hashing is a random character string of variable length between 8 and 24 characters. The salt value is user specific and created at time of user creation. The salt value is stored in a database table separate from the user password.
@@ -9,6 +11,7 @@ The salt for the password hashing is a random character string of variable lengt
 The hash algorithm employed in hashing the password for storage is SHA-512.
 
 ## Login Authentication
+
 The RODE platform authenticates users via a login form.
 
 The [login process](/Documentation/Security/Diagrams#LoginNonWhitelist) authenticates a user according to their hashed and stored password within the database.
@@ -16,18 +19,20 @@ The [login process](/Documentation/Security/Diagrams#LoginNonWhitelist) authenti
 If authenticated the user's login request will be checked against the IP address whtelist for the user. If the IP has not been whitelisted as system email will send a multi factor authentication email to the user to authenticate the user and whitelist the IP address of the request origin. IP whitelist values are stored for 7 days from last access.
 
 ## User Interface Request Authentication
+
 The [user interface data requests](/Documentation/Security/Diagrams#EntityRequest) attaches all system cookies to all requests to the backend services. Each request validates the request against the presence of two http-only cookies present in the request. Each cookie is tightly coupled and are required for authenticating the request.
 
-The cookies are the uuid4 format RODE system identifier of the user making the request, and a session JSON web token encrypted with a random string session code of variable length between 12 and 36 characters. The JSON web token is created upon successful authentication into the RODE user interface. 
+The cookies are the uuid4 format RODE system identifier of the user making the request, and a session JSON web token encrypted with a random string session code of variable length between 12 and 36 characters. The JSON web token is created upon successful authentication into the RODE user interface.
 
 The maximum age for a token is 6 minutes.
 
 The RODE user interface will make a [token renew request](/Documentation/Security/Diagrams#RenewToken) every 5 minutes to maintain the user session.
 
 ## Project API Request Authentication
+
 The [project specific data requests](/Documentation/Security/Diagrams#ResearchRequest) require the inclusion of two security headers.
 
-The request must include the project token as the **AUTH** header and the uuid4 of the user making the request as the **USER** header. Each request must be directed to the project specific endpoint which consists of the project microservice routing and the uuid4 of the project for which the data request is being made. 
+The request must include the project token as the **AUTH** header and the uuid4 of the user making the request as the **USER** header. Each request must be directed to the project specific endpoint which consists of the project microservice routing and the uuid4 of the project for which the data request is being made.
 
 The request is authenticated by ensuring the user is present in the project team, and that the project token matches the token stored in database for the project. The project will also need to be active in the system. The project is assessed according to the project milestones data sourced from the REGIS system.
 
