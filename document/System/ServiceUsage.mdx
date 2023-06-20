@@ -1,1 +1,11 @@
 # Service Usage
+
+## Volumes
+
+| Volume     | Path                | Tags | Description                                                                                                    |
+| :--------- | :------------------ | :--: | :------------------------------------------------------------------------------------------------------------- |
+| **logs**   | /logs               | ALL  | Location of the logfiles for logging request / error / system traffic                                          |
+| **tmp**    | /tmp                | ALL  | Temporary file location - should be a shared location with cleanup services running for purging historic files |
+| **source** | /source             | DEV  | The source code volume to include the source code in the running container                                     |
+| **media**  | /media              | ALL  | The media volume to include the media files in the running container                                           |
+| **static** | /usr/app/src/public | DEV  | The static assets for the user interface                                                                       |

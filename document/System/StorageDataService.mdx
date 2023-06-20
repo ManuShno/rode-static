@@ -12,7 +12,7 @@ This microservice is designed to be horizontally scalable to meet traffic requir
 
 The data services operate in the same namespace as the RODE services. The data services contain a mysql data server and a horizontally scalable sidecar that exposes the databse operations as RESTful services.
 
-![Infrastructure](https://rode.forske.org/diagrams/data-service/infrastructure.drawio.svg)
+![Infrastructure](/diagrams/System/data-service-infrastructure.drawio.svg)
 
 ## Prerequisites
 
@@ -65,35 +65,35 @@ The routes are the url routing rules for the method requests.
 | :------------------- | :---------: | :-: | :--: | :-: | :---: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | /healthz             |     All     |     |      |     |       |        | The health check route that will be queried by the kubernetes health checks.                                                                                                |
 | /base                |     All     |     |      |     |       |        | The route for testing the initialisation of the development environment.                                                                                                    |
-| /{table}             | Production  |     |      |     |       |        | The route by which http requests should be received for manipulating data within the production environment. This should only ever be accessed from within the K8s cluster. |
-| /{base}/{db}/{table} | Development |     |      |     |       |        | The route by which http requests should be received for manipulating data within the development environment.                                                               |
+| /[table]             | Production  |     |      |     |       |        | The route by which http requests should be received for manipulating data within the production environment. This should only ever be accessed from within the K8s cluster. |
+| /[base]/[db]/[table] | Development |     |      |     |       |        | The route by which http requests should be received for manipulating data within the development environment.                                                               |
 
 ### Get
 
 The get method handler is responsible for the processing of http GET requests. These requests will generate SQL select statements and perform the operations against the database. The returned values represent the data within the database.
 
-![Get Process](https://rode.forske.org/diagrams/data-service/get.drawio.svg)
+![Get Process](/diagrams/System/data-service-get.drawio.svg)
 
 ### Post
 
 The post method handler is responsible for the processing of http POST requests. These requests will generate SQL insert statements and perform the operations against the database. If there are warnings in the operations performing (due to unique key constraints in the data structure) the insert statement will be peformed after an update of the existing values (end-dating the validity of the current values). The returned values represent the status of the operations performed in the database.
 
-![Post Process](https://rode.forske.org/diagrams/data-service/post.drawio.svg)
+![Post Process](/diagrams/System/data-service-post.drawio.svg)
 
 ### Put
 
 The put method handler is responsible for the processing of http PUT requests. These requests will generate SQL update and insert statements and perform the operations against the database. This process is similar to the operations performed by the POST process when warnings occur. The returned values represent the status of the operations performed in the database.
 
-![Put Process](https://rode.forske.org/diagrams/data-service/put.drawio.svg)
+![Put Process](/diagrams/System/data-service-put.drawio.svg)
 
 ### Patch
 
 The patch method handler is responsible for the processing of http PATCH requests. These requests will generate SQL update statements and perform the operations against the database. The returned values represent the status of the operations performed in the database.
 
-![Put Process](https://rode.forske.org/diagrams/data-service/patch.drawio.svg)
+![Put Process](/diagrams/System/data-service-patch.drawio.svg)
 
 ### Delete
 
 The delete method handler is responsible for the processing of http DELETE requests. These requests will generate SQL update (or delete statements if particular parameters are present) and perform the operations against the databse. The returned values represent the status of the operations performed in the database.
 
-![Delete Process](https://rode.forske.org/diagrams/data-service/delete.drawio.svg)
+![Delete Process](/diagrams/System/data-service-delete.drawio.svg)

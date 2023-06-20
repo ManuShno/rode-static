@@ -61,8 +61,8 @@ The routes are the url routing rules for the method requests.
 | :------------------- | :---------: | :-: | :--: | :-: | :---: | :----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | /healthz             |     All     |     |      |     |       |        | The health check route that will be queried by the kubernetes health checks.                                                                                                |
 | /base                |     All     |     |      |     |       |        | The route for testing the initialisation of the development environment.                                                                                                    |
-| /{table}             | Production  |     |      |     |       |        | The route by which http requests should be received for manipulating data within the production environment. This should only ever be accessed from within the K8s cluster. |
-| /{base}/{db}/{table} | Development |     |      |     |       |        | The route by which http requests should be received for manipulating data within the development environment.                                                               |
+| /[table]             | Production  |     |      |     |       |        | The route by which http requests should be received for manipulating data within the production environment. This should only ever be accessed from within the K8s cluster. |
+| /[base]/[db]/[table] | Development |     |      |     |       |        | The route by which http requests should be received for manipulating data within the development environment.                                                               |
 
 ### Get
 
